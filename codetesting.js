@@ -1,27 +1,25 @@
-function getDayType (day) {
-     const weekDays = day.toLowerCase();
-     
-     switch (weekDays) {
-        case "friday":
-        case "saturday":
-                return "weekend";
+function validateUsername (username) {
+        const name = username.toLowerCase();
 
-        case "sunday":
-        case "monday":
-        case "tuesday":
-        case "wednesday":
-        case "thursday":
-                return "working day";
-
-        default: 
-                return "invalid day";
-     }
-        
+        if (username.length <4) {
+                return "Too short";
+        } 
+        else if (username.includes (" ")) {
+                return "No spaces allowed";
+        } 
+        else if (name.includes ("admin") ) {
+                return "Reserved Word"
+        }
+        else {
+                return "Available";
+        }
 }
 
-console.log(getDayType("Friday"));
-console.log(getDayType("friday"));
-console.log(getDayType("SATURDAY"));
-console.log(getDayType("MONDAY"));
-console.log(getDayType("wednesday"));
-console.log(getDayType("Bandarban"));
+console.log(validateUsername("rahim123"));
+console.log(validateUsername("ab"));
+console.log(validateUsername("a b"));
+console.log(validateUsername("abcd"));
+console.log(validateUsername("rahim islam"));
+console.log(validateUsername("superadmin99"));
+console.log(validateUsername("Admin_Rahim"));
+

@@ -29,4 +29,19 @@ function getDayType (day) {
 }
 
 // Answer 3: Username Gatekeeper
-function validateUsername (username)
+function validateUsername (username) {
+        const name = username.toLowerCase();
+
+        if (username.length <4) {
+                return "Too short";
+        } 
+        else if (username.includes (" ")) {
+                return "No spaces allowed";
+        } 
+        else if (name.includes ("admin") ) {
+                return "Reserved Word"
+        }
+        else {
+                return "Available";
+        }
+}
