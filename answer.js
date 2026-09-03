@@ -60,3 +60,29 @@ function getCngFare(distance, isNight = false , waitingMinutes = 0) {
         }
         return minimumFare;
 }
+
+// Answer 5: Run Chase Commentator
+const getChaseVerdict = (target, scored, ballsLeft) => {
+        const runNeeded = target - scored;
+
+        if (runNeeded <= 0) {
+                return "won";
+        }
+        else if (ballsLeft <= 0) {
+                return "lost";
+        }
+
+        const requiredRunRate = (runNeeded / ballsLeft) * 6;
+        let verdict;
+
+        if ( requiredRunRate <= 6) {
+                verdict = "comfortable";
+        }
+        else if (requiredRunRate <= 12) {
+                verdict = "tough ";
+        }
+        else { verdict = "almost impossible"; }
+
+        return `Need ${runNeeded} runs in ${ballsLeft} balls |  ${verdict}`;
+};
+

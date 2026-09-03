@@ -1,20 +1,31 @@
-function getCngFare(distance, isNight = false , waitingMinutes = 0) {
-        let minimumFare = 50;
+const getChaseVerdict = (target, scored, ballsLeft) => {
+        const runNeeded = target - scored;
 
-        if (distance > 2)  {
-                minimumFare = minimumFare + (distance - 2) * 15;
+        if (runNeeded <= 0) {
+                return "won";
+        }
+        else if (ballsLeft <= 0) {
+                return "lost";
         }
 
-        minimumFare = minimumFare + waitingMinutes * 2;
-        if (isNight) {
-                minimumFare = minimumFare + minimumFare * 0.2;
+        const requiredRunRate = (runNeeded / ballsLeft) * 6;
+        let verdict;
+
+        if ( requiredRunRate <= 6) {
+                verdict = "comfortable";
         }
-        return minimumFare;
-}
+        else if (requiredRunRate <= 12) {
+                verdict = "tough ";
+        }
+        else { verdict = "almost impossible"; }
+
+        return `Need ${runNeeded} runs in ${ballsLeft} balls |  ${verdict}`;
+};
 
 
-console.log(getCngFare(5));
-console.log(getCngFare(1));
-console.log(getCngFare(5, false, 10));
-console.log(getCngFare(5, true));
-console.log(getCngFare(5, true, 10));
+console.log(getChaseVerdict(200, 200, 12));
+console.log(getChaseVerdict(200, 190, 0));
+console.log(getChaseVerdict(100, 90, 12));
+console.log(getChaseVerdict(100, 80, 12));
+console.log(getChaseVerdict(100, 70, 12));
+console.log(getChaseVerdict(150, 149, 1));
