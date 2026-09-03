@@ -45,3 +45,18 @@ function validateUsername (username) {
                 return "Available";
         }
 }
+
+// Answer 4: Dhaka CNG Fare Meter
+function getCngFare(distance, isNight = false , waitingMinutes = 0) {
+        let minimumFare = 50;
+
+        if (distance > 2)  {
+                minimumFare = minimumFare + (distance - 2) * 15;
+        }
+
+        minimumFare = minimumFare + waitingMinutes * 2;
+        if (isNight) {
+                minimumFare = minimumFare + minimumFare * 0.2;
+        }
+        return minimumFare;
+}

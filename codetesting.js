@@ -1,25 +1,20 @@
-function validateUsername (username) {
-        const name = username.toLowerCase();
+function getCngFare(distance, isNight = false , waitingMinutes = 0) {
+        let minimumFare = 50;
 
-        if (username.length <4) {
-                return "Too short";
-        } 
-        else if (username.includes (" ")) {
-                return "No spaces allowed";
-        } 
-        else if (name.includes ("admin") ) {
-                return "Reserved Word"
+        if (distance > 2)  {
+                minimumFare = minimumFare + (distance - 2) * 15;
         }
-        else {
-                return "Available";
+
+        minimumFare = minimumFare + waitingMinutes * 2;
+        if (isNight) {
+                minimumFare = minimumFare + minimumFare * 0.2;
         }
+        return minimumFare;
 }
 
-console.log(validateUsername("rahim123"));
-console.log(validateUsername("ab"));
-console.log(validateUsername("a b"));
-console.log(validateUsername("abcd"));
-console.log(validateUsername("rahim islam"));
-console.log(validateUsername("superadmin99"));
-console.log(validateUsername("Admin_Rahim"));
 
+console.log(getCngFare(5));
+console.log(getCngFare(1));
+console.log(getCngFare(5, false, 10));
+console.log(getCngFare(5, true));
+console.log(getCngFare(5, true, 10));
